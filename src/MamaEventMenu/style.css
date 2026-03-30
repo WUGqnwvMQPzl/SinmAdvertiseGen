@@ -1,0 +1,8 @@
+.ring {
+  position: absolute;
+  top: 15px;
+  left: 59px;
+  width: 714px;
+  height: 714px;
+  mask-size: cover;
+}
