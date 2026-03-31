@@ -1,8 +1,10 @@
-import { AbsoluteFill, AnimatedImage, Easing, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Easing, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Video } from "@remotion/media";
 import { ALL_FORMATS, Input, UrlSource } from "mediabunny";
 
 import { MonitorMask } from "./MonitorMask";
+import { OuterTransition } from "./OuterTransition";
+import { InnerTransition } from "./InnerTransition";
 
 import "./style.css";
 
@@ -41,10 +43,7 @@ export const MamaEventMenu = ({ data }) => {
     <AbsoluteFill style={{ backgroundColor: "black" }}>
       <AbsoluteFill style={{ opacity: fadeOutOpacity }}>
         <Video src={staticFile("/vid/circle_bg_crf20.mp4")} loop />
-        <AbsoluteFill>
-          <AnimatedImage style={{ position: "absolute" }} src={staticFile("/transition/inner2.webp")} loopBehavior="clear-after-finish" />
-          <AnimatedImage style={{ position: "absolute" }} src={staticFile("/transition/inner1.webp")} loopBehavior="clear-after-finish" />
-        </AbsoluteFill>
+        <InnerTransition />
         <AbsoluteFill style={{ top: mainX, left: 124, width: 830, opacity: mainOpacity }}>
           <Img style={{ position: "absolute", left: 44, width: 744 }} src={staticFile("/img/UI_INF_Base_01_edit.png")} />
           <div className="ring" style={{ maskImage: `url('${staticFile("/img/UI_INF_Base_02.png")}')`, background: "#319DF8" }}></div>
@@ -59,11 +58,7 @@ export const MamaEventMenu = ({ data }) => {
             <Video src={VIDEO_INPUT} />
           </AbsoluteFill>
         </AbsoluteFill>
-        <AbsoluteFill style={{ zIndex: 3 }}>
-          <AnimatedImage style={{ position: "absolute" }} src={staticFile("/transition/outer3.webp")} loopBehavior="clear-after-finish" />
-          <AnimatedImage style={{ position: "absolute" }} src={staticFile("/transition/outer2.webp")} loopBehavior="clear-after-finish" />
-          <AnimatedImage style={{ position: "absolute" }} src={staticFile("/transition/outer1.webp")} loopBehavior="clear-after-finish" />
-        </AbsoluteFill>
+        <OuterTransition />
       </AbsoluteFill>
       <MonitorMask />
     </AbsoluteFill>
