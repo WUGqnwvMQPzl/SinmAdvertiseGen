@@ -2,6 +2,8 @@ import { AbsoluteFill, AnimatedImage, Easing, Img, interpolate, staticFile, useC
 import { Video } from "@remotion/media";
 import { ALL_FORMATS, Input, UrlSource } from "mediabunny";
 
+import { MonitorMask } from "./MonitorMask";
+
 import "./style.css";
 
 // TODO: custom input
@@ -62,18 +64,8 @@ export const MamaEventMenu = ({ data }) => {
           <AnimatedImage style={{ position: "absolute" }} src={staticFile("/transition/outer2.webp")} loopBehavior="clear-after-finish" />
           <AnimatedImage style={{ position: "absolute" }} src={staticFile("/transition/outer1.webp")} loopBehavior="clear-after-finish" />
         </AbsoluteFill>
-        <AbsoluteFill style={{ zIndex: 99 }}>
-          <svg viewBox="0 0 1080 1080">
-            <defs>
-              <mask id="cut">
-                <rect width="1080" height="1080" fill="white"/>
-                <circle cx="540" cy="540" r="540"/>
-              </mask>
-            </defs>
-            <rect width="1080" height="1080" mask="url(#cut)"/>
-          </svg>
-        </AbsoluteFill>
       </AbsoluteFill>
+      <MonitorMask />
     </AbsoluteFill>
   );
 };
