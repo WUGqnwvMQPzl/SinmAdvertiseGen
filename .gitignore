@@ -3,4 +3,8 @@ dist
 .DS_Store
 .env
 
+inputs/backgrounds/**
+inputs/contents/**
+!.keep
+
 out

@@ -9,10 +9,7 @@ import { MainBox } from "./MainBox";
 
 import "./style.css";
 
-// TODO: custom input
-const VIDEO_INPUT = staticFile("/vid/placeholder.webm")
-
-export const MamaEventMenu = ({ data }) => {
+export const MamaEventMenu = ({ inputBackground, inputContent, data }) => {
   const frame = useCurrentFrame();
   const {durationInFrames} = useVideoConfig();
 
@@ -43,10 +40,10 @@ export const MamaEventMenu = ({ data }) => {
   return (
     <AbsoluteFill style={{ backgroundColor: "black" }}>
       <AbsoluteFill style={{ opacity: fadeOutOpacity }}>
-        <Video src={staticFile("/vid/circle_bg_crf20.mp4")} loop />
+        <Video src={`http://127.0.0.1:10016/backgrounds/${inputBackground}`} loop />
         <InnerTransition />
         <MainBox style={{ top: mainX, opacity: mainOpacity }}>
-          <Video src={VIDEO_INPUT} />
+          <Video src={`http://127.0.0.1:10016/contents/${inputContent}`} />
         </MainBox>
         <OuterTransition />
       </AbsoluteFill>
@@ -55,10 +52,10 @@ export const MamaEventMenu = ({ data }) => {
   );
 };
 
-export const calculateMetadata = async ({ prop }) => {
+export const calculateMetadata = async ({ props }) => {
   const mediaInput = new Input({
     formats: ALL_FORMATS,
-    source: new UrlSource(VIDEO_INPUT)
+    source: new UrlSource(`http://127.0.0.1:10016/contents/${props.inputContent}`)
   });
 
   if (await mediaInput.getPrimaryVideoTrack() == null)
@@ -69,7 +66,7 @@ export const calculateMetadata = async ({ prop }) => {
   return {
     durationInFrames: videoDuration + 10,
     props: {
-      ...prop,
+      ...props,
       data: {
         videoDuration
       }
