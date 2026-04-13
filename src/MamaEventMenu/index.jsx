@@ -40,10 +40,10 @@ export const MamaEventMenu = ({ inputBackground, inputContent, data }) => {
   return (
     <AbsoluteFill style={{ backgroundColor: "black" }}>
       <AbsoluteFill style={{ opacity: fadeOutOpacity }}>
-        <Video src={`http://127.0.0.1:10016/backgrounds/${inputBackground}`} loop />
+        <Video style={{ width: 1080, height: 1080 }} objectFit="cover" src={`http://127.0.0.1:10016/backgrounds/${inputBackground}`} muted loop />
         <InnerTransition />
         <MainBox style={{ top: mainX, opacity: mainOpacity }}>
-          <Video src={`http://127.0.0.1:10016/contents/${inputContent}`} />
+          <Video style={{ width: "100%", height: "100%", background: "#000" }} src={`http://127.0.0.1:10016/contents/${inputContent}`} />
         </MainBox>
         <OuterTransition />
       </AbsoluteFill>
